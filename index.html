@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>[Your Name] | Cozy Anime Art Commissions</title>
   <style>
-    /* 🌸 Cozy Anime Art Landing Page 🌸 */
+    /* 🌸 Cozy Anime Art Landing Page with Animations 🌸 */
     body {
       font-family: 'Poppins', sans-serif;
       background-color: #fffaf6;
@@ -13,23 +13,49 @@
       margin: 0;
       padding: 0;
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
     header {
       text-align: center;
-      padding: 4rem 1rem 2rem;
+      padding: 5rem 1rem 3rem;
       background: linear-gradient(to bottom, #fff5ee, #fffaf6);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Floating sparkles */
+    .sparkle {
+      position: absolute;
+      background: rgba(255, 182, 185, 0.5);
+      border-radius: 50%;
+      width: 10px;
+      height: 10px;
+      animation: float 6s ease-in-out infinite;
+      z-index: 0;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) scale(1); opacity: 0.8; }
+      50% { transform: translateY(-20px) scale(1.2); opacity: 0.6; }
+      100% { transform: translateY(0) scale(1); opacity: 0.8; }
     }
 
     header h1 {
       font-size: 2.5rem;
       margin-bottom: 0.5rem;
+      position: relative;
+      z-index: 2;
+      animation: fadeInUp 1s ease;
     }
 
     header p {
       font-size: 1.1rem;
       max-width: 600px;
       margin: 0 auto 1.5rem;
+      position: relative;
+      z-index: 2;
+      animation: fadeInUp 1.3s ease;
     }
 
     .btn {
@@ -41,16 +67,28 @@
       text-decoration: none;
       font-weight: 600;
       transition: 0.3s;
+      position: relative;
+      z-index: 2;
     }
 
     .btn:hover {
       background-color: #ff9fa3;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 10px rgba(0,0,0,0.1);
     }
 
     section {
       padding: 3rem 1.5rem;
       max-width: 900px;
       margin: auto;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 1s ease;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     h2 {
@@ -78,11 +116,12 @@
       width: 100%;
       border-radius: 12px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      transition: transform 0.3s;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
 
     .gallery img:hover {
       transform: scale(1.03);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.15);
     }
 
     .commission-info {
@@ -110,6 +149,7 @@
       max-width: 700px;
       font-style: italic;
       border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
     }
 
     footer {
@@ -131,6 +171,11 @@
       text-decoration: underline;
     }
 
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     @media (max-width: 600px) {
       header h1 {
         font-size: 2rem;
@@ -145,9 +190,15 @@
 
   <!-- 🌸 HERO SECTION -->
   <header>
-    <h1>Hi, I’m [Your Name] 👋</h1>
+    <!-- Floating sparkles -->
+    <div class="sparkle" style="top: 10%; left: 20%; animation-delay: 0s;"></div>
+    <div class="sparkle" style="top: 30%; left: 80%; animation-delay: 1s;"></div>
+    <div class="sparkle" style="top: 70%; left: 40%; animation-delay: 2s;"></div>
+    <div class="sparkle" style="top: 50%; left: 10%; animation-delay: 3s;"></div>
+
+    <h1>Hi, I’m Hoshinoarts 👋</h1>
     <p>I create cozy, story-filled anime illustrations that bring your favorite moments and characters to life.<br>
-    ✨ Custom portraits · OC illustrations · Fanart commissions</p>
+    ✨ Custom portraits · OC illustrations · Fanart</p>
     <a href="#commissions" class="btn">🎨 Commission Me</a>
     <a href="#gallery" class="btn" style="background-color:#ffe3e1; color:#3a2c27; margin-left:0.5rem;">📷 View Gallery</a>
   </header>
@@ -159,7 +210,7 @@
       Ever since I started drawing, I’ve loved capturing emotions through soft colors, warm lighting, and expressive characters.  
       My goal is to make every artwork feel like a gentle story — something that makes you smile each time you look at it.  
       <br><br>
-      I use digital tools like <strong>Procreate</strong> and <strong>Clip Studio Paint</strong>, and every piece is hand-painted with love. 💕
+      I use digital tools like <strong>Photoshop</strong> and <strong>Clip Studio Paint</strong>, and every piece is hand-painted with love. 💕
     </p>
   </section>
 
@@ -218,5 +269,26 @@
     <p>© 2025 [Your Name] Art. All Rights Reserved.</p>
   </footer>
 
+  <!-- 🌷 Scroll Animation Script -->
+  <script>
+    const sections = document.querySelectorAll("section");
+    const revealSection = () => {
+      const triggerBottom = window.innerHeight * 0.9;
+      sections.forEach(section => {
+        const top = section.getBoundingClientRect().top;
+        if (top < triggerBottom) {
+          section.classList.add("visible");
+        }
+      });
+    };
+    window.addEventListener("scroll", revealSection);
+    window.addEventListener("load", revealSection);
+  </script>
+
 </body>
 </html>
+
+
+</body>
+</html>
+
